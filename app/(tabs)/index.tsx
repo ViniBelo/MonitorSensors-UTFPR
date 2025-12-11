@@ -1,6 +1,7 @@
 import mqtt from 'mqtt';
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, SafeAreaView, Text, View } from 'react-native';
+import { ActivityIndicator, Text, View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import styles from '../styles';
 
 const BROKER_URL = 'ws://broker.hivemq.com:8000/mqtt';
@@ -68,7 +69,7 @@ export default function App() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaProvider style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Monitor IoT</Text>
         <Text style={styles.status}>Status: {status}</Text>
@@ -97,6 +98,6 @@ export default function App() {
       {lastUpdate && (
         <Text style={styles.footer}>Última atualização: {lastUpdate}</Text>
       )}
-    </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
